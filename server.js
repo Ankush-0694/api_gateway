@@ -2,6 +2,9 @@ const { ApolloServer } = require("apollo-server-express");
 const { ApolloGateway, RemoteGraphQLDataSource } = require("@apollo/gateway");
 const express = require("express");
 const expressJwt = require("express-jwt");
+
+const FileUploadDataSource = require("@profusion/apollo-federation-upload");
+
 require("dotenv").config();
 
 const app = express();
@@ -17,7 +20,7 @@ app.use(
 
 const gateway = new ApolloGateway({
   serviceList: [
-    { name: "products", url: "http://localhost:5000" },
+    { name: "products", url: "http://localhost:4001/graphql" },
     { name: "orders", url: "http://localhost:5001" },
     { name: "users", url: "http://127.0.0.1:4000/graphql" },
   ],
@@ -37,9 +40,12 @@ const gateway = new ApolloGateway({
       },
     });
   },
+  // buildService: ({ url }) => {
+  //   return new FileUploadDataSource({ url, useChunkedTransfer: false });
+  // },
 });
 
-const server = new ApolloServer({
+const apolloServer = new ApolloServer({
   gateway,
   subscriptions: false,
   context: ({ req }) => {
@@ -49,8 +55,15 @@ const server = new ApolloServer({
   },
 });
 
-server.applyMiddleware({ app }); // add this into product and order , and update url into service
+async function startServer() {
+  await apolloServer.start();
+  apolloServer.applyMiddleware({ app });
 
-app.listen({ port }, () => {
-  console.log(`Server ready at http://localhost:${port}${server.graphqlPath}`);
-});
+  await app.listen({ port: 4010 });
+
+  console.log(
+    `🚀 Gateway Server ready at http://localhost:4010${apolloServer.graphqlPath}`
+  );
+}
+
+startServer();
