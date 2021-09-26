@@ -2,13 +2,15 @@ const { ApolloServer } = require("apollo-server-express");
 const { ApolloGateway, RemoteGraphQLDataSource } = require("@apollo/gateway");
 const express = require("express");
 const expressJwt = require("express-jwt");
+const cors = require("cors");
 
 const FileUploadDataSource = require("@profusion/apollo-federation-upload");
 
 require("dotenv").config();
 
 const app = express();
-const port = 4010;
+
+app.use(cors());
 
 app.use(
   expressJwt({
@@ -20,9 +22,9 @@ app.use(
 
 const gateway = new ApolloGateway({
   serviceList: [
-    { name: "products", url: "http://localhost:4001/graphql" },
-    { name: "orders", url: "http://localhost:5001" },
     { name: "users", url: "http://127.0.0.1:4000/graphql" },
+    { name: "products", url: "http://localhost:4001/graphql" },
+    { name: "orders", url: "http://localhost:4002/graphql" },
   ],
 
   /**
@@ -55,14 +57,21 @@ const apolloServer = new ApolloServer({
   },
 });
 
+const port = process.env.PORT || 4010;
+
 async function startServer() {
-  await apolloServer.start();
+  try {
+    await apolloServer.start();
+  } catch (error) {
+    console.log(error);
+  }
+
   apolloServer.applyMiddleware({ app });
 
-  await app.listen({ port: 4010 });
+  await app.listen({ port: port });
 
   console.log(
-    `🚀 Gateway Server ready at http://localhost:4010${apolloServer.graphqlPath}`
+    `🚀 Gateway Server ready at http://localhost:${port}${apolloServer.graphqlPath}`
   );
 }
 
