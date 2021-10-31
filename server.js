@@ -56,7 +56,11 @@ async function startServer() {
     },
   });
 
-  await apolloServer.start();
+  try {
+    await apolloServer.start();
+  } catch (error) {
+    throw error;
+  }
 
   //   // Additional middleware can be mounted at this point to run before Apollo.
   //  example -  app.use("*", jwtCheck, requireAuth, checkScope);
@@ -66,7 +70,11 @@ async function startServer() {
   // Mount Apollo middleware here.
   apolloServer.applyMiddleware({ app });
 
-  await new Promise((resolve) => app.listen({ port: port }, resolve));
+  try {
+    await new Promise((resolve) => app.listen({ port: port }, resolve));
+  } catch (error) {
+    throw error;
+  }
 
   console.log(
     `🚀 Gateway Server ready at http://localhost:${port}${apolloServer.graphqlPath}`
