@@ -4,7 +4,7 @@ const express = require("express");
 const expressJwt = require("express-jwt");
 const cors = require("cors");
 
-const FileUploadDataSource = require("@profusion/apollo-federation-upload");
+// const FileUploadDataSource = require("@profusion/apollo-federation-upload");
 
 require("dotenv").config();
 
