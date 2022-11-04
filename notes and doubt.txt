@@ -1,0 +1,135 @@
+user port - 4000
+Product port - 4001
+order port - 4002
+mail port - 4003
+api gateway - 4010
+
+
+
+working on ui is not working for me 
+
+
+Remember 
+    We will use GraphQl instead of restApi
+
+    python web developement
+
+
+
+
+doubt- 
+
+    
+
+    do we need redux along with apollo and graphql
+
+    how apollo will handle microservice
+ 
+    should specific product to be shown to vendor ?
+
+    how we will store images in the database using graphql  //later because need of apollo server
+
+    why do we need python web developement
+
+    do we need to use graphql with python server as well?
+    
+
+
+
+Edits: 
+    Product can have reviews and rating(which will be added by users) and other things,  when we are fetching single item
+    then we can show these details
+
+    we can make schema.js file better using filetype , query and mutation in seprate file and then use it
+
+
+
+
+
+////////////////////////////////////16 - march/////////////////////////////////////
+
+learn routes in python
+
+add models to node repos and some necessary routes
+
+start working on UI
+
+
+
+////////////////////////////////////17- march/////////////////////////////////////
+
+
+To Do -
+
+    1 - add models to node repos and some necessary routes
+    Product, order, user details , 
+    simple compulsory route -  Remember we will use GraphQl
+
+    2 -  learn routes in python and other things and other web stuff 
+
+
+
+
+
+////////////////////////////////////18- march/////////////////////////////////////
+
+    no study
+
+////////////////////////////////////19- march/////////////////////////////////////
+
+
+Nothing done
+
+////////////////////////////////////20- march/////////////////////////////////////
+no study
+////////////////////////////////////21- march/////////////////////////////////////
+graphql setup of product
+
+To Do -
+    order model and graphql setup test - same as product
+    but must think of all possible fields in  schema ( front+back)
+?
+
+    
+
+////////////////////////////////////22- march/////////////////////////////////////
+////////////////////////////////////27- march/////////////////////////////////////
+
+
+28 march
+
+    
+Next Task -
+    Put a form in react having an option of image upload save in database using GraphQl
+    and show in the product component
+
+    first make a simple app for upload a image in rest api then do next
+
+    //this task in incomplete due to need of apollo server
+
+    ////////////////////////////////////1- april/////////////////////////////////////
+////////////////////////////////////14- april/////////////////////////////////////
+
+
+14 april -
+    New Tasks -
+
+
+14 May =
+
+    ADD a Counter on checkout page
+
+    ///Storing an object in schema will make things complicated
+
+    NEXT TASK IS TO MAKE ORDER SCHEMA using graphql and apollo and make an order page on which we will go after clicking placeORDER 
+    and show all the detail regarding the order on the order page
+
+
+
+
+
+
+
+
+
+ 
