@@ -22,7 +22,7 @@ app.use(
 
 const gateway = new ApolloGateway({
   serviceList: [
-    // { name: "users", url: "http://127.0.0.1:4000/graphql" },
+    { name: "users", url: "http://127.0.0.1:4000/graphql" },
     { name: "products", url: "http://localhost:4001/graphql" },
     { name: "orders", url: "http://localhost:4002/graphql" },
   ],
